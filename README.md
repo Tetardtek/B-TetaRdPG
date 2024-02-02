@@ -22,6 +22,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [MySQL](https://www.mysql.com/) - An open-source relational database management system.
 - [Jsonwebtoken](https://jwt.io/introduction) - JSON Web Token implementation for Node.js.
 
-
+## Database
+- [DBDiagram](https://dbdiagram.io/d/TetaRdPG-65b7ffaaac844320aefa0d57)
+  
 ## Contact
 [![Discord](https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/discord.svg)](https://discord.com/users/235413280103858176)
