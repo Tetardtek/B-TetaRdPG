@@ -1,0 +1,68 @@
+DROP TABLE IF EXISTS monsters;
+DROP TABLE IF EXISTS family;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS players;
+DROP TABLE IF EXISTS types;
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS experiences;
+
+CREATE TABLE experiences (
+id INT AUTO_INCREMENT PRIMARY KEY,
+xp_quantity INT
+);
+
+CREATE TABLE roles (
+id INT AUTO_INCREMENT PRIMARY KEY,
+rolename VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE types (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE players (
+id INT AUTO_INCREMENT PRIMARY KEY,
+nickname VARCHAR(15) NOT NULL,
+types_id INT,
+xp_amount INT NOT NULL,
+level INT DEFAULT 1,
+stamina INT DEFAULT 100,
+golds_amount INT DEFAULT 0,
+life INT DEFAULT 50,
+attack INT DEFAULT 10,
+defense INT DEFAULT 10,
+FOREIGN KEY (types_id) REFERENCES types(id) ON DELETE CASCADE
+);
+
+CREATE TABLE users (
+id INT AUTO_INCREMENT PRIMARY KEY,
+firstname VARCHAR(30) NOT NULL,
+lastname VARCHAR(30) NOT NULL,
+nickname VARCHAR(30) NOT NULL,
+mail VARCHAR(90) NOT NULL,
+birthdate DATE NOT NULL,
+logdate DATE NOT NULL,
+password VARCHAR(200) NOT NULL,
+roles_id INT,
+players_id INT,
+FOREIGN KEY (roles_id) REFERENCES roles(id),
+FOREIGN KEY (players_id) REFERENCES players(id) ON DELETE SET NULL
+);
+
+CREATE TABLE family (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(15)
+);
+
+CREATE TABLE monsters (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(15),
+family_id INT,
+life INT,
+attack INT,
+defense INT,
+xp_give INT,
+golds_give INT,
+FOREIGN KEY (family_id) REFERENCES family(id)
+);
