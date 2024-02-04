@@ -8,7 +8,8 @@ DROP TABLE IF EXISTS experiences;
 
 CREATE TABLE experiences (
 id INT AUTO_INCREMENT PRIMARY KEY,
-xp_quantity INT
+level INT NOT NULL,
+xp_quantity INT NOT NULL
 );
 
 CREATE TABLE roles (

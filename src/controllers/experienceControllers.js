@@ -41,7 +41,7 @@ const edit = async (req, res) => {
       return res.status(400).json({ message: "Empty body" });
     }
 
-    const { xp_quantity: xpQuantity } = req.body;
+    const { level, xp_quantity: xpQuantity } = req.body;
 
     const experience = await tables.experiences.read(experienceId);
 
@@ -50,6 +50,10 @@ const edit = async (req, res) => {
     }
 
     const updatedFields = {};
+
+    if (level !== undefined) {
+      updatedFields.level = level;
+    }
 
     if (xpQuantity !== undefined) {
       updatedFields.xp_quantity = xpQuantity;
@@ -78,9 +82,10 @@ const edit = async (req, res) => {
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
   try {
-    const { xp_quantity: xpQuantity } = req.body;
+    const { level, xp_quantity: xpQuantity } = req.body;
 
     const experience = {
+      level,
       xp_quantity: xpQuantity,
     };
 
