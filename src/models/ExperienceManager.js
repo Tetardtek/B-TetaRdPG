@@ -7,10 +7,10 @@ class ExperienceManager extends AbstractManager {
 
   // The C of CRUD - Create operation
   async create(experience) {
-    const { xp_quantity: xpQuantity } = experience;
+    const { level, xp_quantity: xpQuantity } = experience;
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (xp_quantity) VALUES (?)`,
-      [xpQuantity]
+      `INSERT INTO ${this.table} (level, xp_quantity) VALUES (?, ?)`,
+      [level, xpQuantity]
     );
     return result.insertId;
   }
@@ -49,7 +49,7 @@ class ExperienceManager extends AbstractManager {
 
   // The U of CRUD - Update operation
   async edit(id, updatedFields) {
-    const allowedFields = ["xp_quantity"];
+    const allowedFields = ["level", "xp_quantity"];
 
     const fieldsToUpdate = Object.keys(updatedFields).filter((field) =>
       allowedFields.includes(field)
